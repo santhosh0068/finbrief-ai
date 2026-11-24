@@ -1,0 +1,84 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Yahoo Finance Tool",
+    "version": "1.0.0",
+    "description": "Fetches live Indian and global market data"
+  },
+  "paths": {
+    "/get_market_indices": {
+      "post": {
+        "operationId": "get_market_indices",
+        "summary": "Fetch live market indices",
+        "description": "Returns live prices for Nifty 50, Sensex, Nifty Bank, Nifty IT, Nasdaq, SP500, Crude Oil, Gold, USD/INR",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "enum": ["get_market_indices"],
+                    "description": "Action to perform"
+                  }
+                },
+                "required": ["action"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Market indices data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get_top_gainers_losers": {
+      "post": {
+        "operationId": "get_top_gainers_losers",
+        "summary": "Fetch top gainers and losers",
+        "description": "Returns top gaining and losing stocks from major Indian stocks today including SBI, TCS, Infosys, HDFC Bank, ICICI Bank, Reliance, Wipro",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "enum": ["get_top_gainers_losers"],
+                    "description": "Action to perform"
+                  }
+                },
+                "required": ["action"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Top gainers and losers data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

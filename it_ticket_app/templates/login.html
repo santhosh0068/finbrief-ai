@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login – IT Helpdesk</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+</head>
+<body class="login-page">
+
+<div class="login-box">
+  <div class="login-logo">🎫</div>
+  <h2>IT Helpdesk</h2>
+  <p class="login-sub">Sign in to manage tickets</p>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for cat, msg in messages %}
+      <div class="alert alert-{{ cat }}">{{ msg }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <form method="POST" id="login-form">
+    <div class="field">
+      <label>Username</label>
+      <input id="username" name="username" type="text"
+             placeholder="admin or agent" required autofocus/>
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input id="password" name="password" type="password"
+             placeholder="••••••••" required/>
+    </div>
+    <button type="submit" class="btn btn-primary full">Sign In →</button>
+  </form>
+
+  <p class="hint">demo: <strong>admin / admin123</strong> &nbsp;·&nbsp; <strong>agent / agent123</strong></p>
+</div>
+
+</body>
+</html>

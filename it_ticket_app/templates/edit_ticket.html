@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Edit {{ ticket.id }} – IT Helpdesk{% endblock %}
+
+{% block content %}
+<div class="section-header">
+  <h1>✏️ Edit {{ ticket.id }}</h1>
+  <a href="{{ url_for('ticket_detail', tid=ticket.id) }}" class="btn btn-grey">← Cancel</a>
+</div>
+
+<div class="card">
+  <form method="POST" id="edit-ticket-form">
+    <div class="field">
+      <label>Title *</label>
+      <input id="title" name="title" type="text" value="{{ ticket.title }}" required/>
+    </div>
+    <div class="field">
+      <label>Description *</label>
+      <textarea id="description" name="description" rows="4" required>{{ ticket.description }}</textarea>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Priority</label>
+        <select id="priority" name="priority">
+          {% for p in ["High","Medium","Low"] %}
+            <option {% if ticket.priority==p %}selected{% endif %}>{{ p }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="field">
+        <label>Status</label>
+        <select id="status" name="status">
+          {% for s in ["Open","In Progress","Resolved","Closed"] %}
+            <option {% if ticket.status==s %}selected{% endif %}>{{ s }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="field">
+        <label>Category</label>
+        <select id="category" name="category">
+          {% for c in ["Network","Hardware","Software","Access","General"] %}
+            <option {% if ticket.category==c %}selected{% endif %}>{{ c }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="field">
+        <label>Assignee</label>
+        <input id="assignee" name="assignee" type="text" value="{{ ticket.assignee }}"/>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button id="save-btn" type="submit" class="btn btn-primary">💾 Save Changes</button>
+      <a href="{{ url_for('ticket_detail', tid=ticket.id) }}" class="btn btn-grey">Cancel</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

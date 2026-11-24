@@ -1,0 +1,46 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Tavily News Search Tool",
+    "version": "1.0.0",
+    "description": "Searches latest financial news using Tavily"
+  },
+  "paths": {
+    "/search_financial_news": {
+      "post": {
+        "operationId": "search_financial_news",
+        "summary": "Search latest financial news",
+        "description": "Searches the web for latest financial news and returns headlines with brief descriptions. Use for Indian stock market news, SEBI updates, RBI updates.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "Financial news search query e.g. Indian stock market news today"
+                  }
+                },
+                "required": ["query"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "News search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

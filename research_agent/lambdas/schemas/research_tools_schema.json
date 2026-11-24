@@ -1,0 +1,160 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Research Tools",
+    "version": "1.0.0",
+    "description": "Financial research tools for Indian stock market"
+  },
+  "paths": {
+    "/get_market_indices": {
+      "post": {
+        "operationId": "get_market_indices",
+        "summary": "Fetch live market indices",
+        "description": "Returns live prices for Nifty 50, Sensex, Nifty Bank, Nifty IT, Nasdaq, SP500, Crude Oil, Gold, USD INR",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "default": "get_market_indices"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Market indices",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get_top_gainers_losers": {
+      "post": {
+        "operationId": "get_top_gainers_losers",
+        "summary": "Fetch top gainers and losers",
+        "description": "Returns top gaining and losing Indian stocks today",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "default": "get_top_gainers_losers"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Gainers and losers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search_financial_news": {
+      "post": {
+        "operationId": "search_financial_news",
+        "summary": "Search latest financial news",
+        "description": "Searches web for latest Indian stock market news SEBI updates RBI updates",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "default": "search_financial_news"
+                  },
+                  "query": {
+                    "type": "string",
+                    "description": "Search query"
+                  }
+                },
+                "required": ["query"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "News results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get_technical_indicators": {
+      "post": {
+        "operationId": "get_technical_indicators",
+        "summary": "Get technical indicators for a stock",
+        "description": "Returns RSI MACD SMA technical indicators for a stock symbol like INFY.NS TCS.NS SBIN.NS",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "default": "get_technical_indicators"
+                  },
+                  "symbol": {
+                    "type": "string",
+                    "description": "Yahoo Finance ticker symbol e.g. INFY.NS"
+                  }
+                },
+                "required": ["symbol"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Technical indicators",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

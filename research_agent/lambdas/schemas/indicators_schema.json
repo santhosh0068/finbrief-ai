@@ -1,0 +1,46 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Technical Indicators Tool",
+    "version": "1.0.0",
+    "description": "Calculates RSI, MACD, SMA technical indicators for stocks"
+  },
+  "paths": {
+    "/get_technical_indicators": {
+      "post": {
+        "operationId": "get_technical_indicators",
+        "summary": "Get technical indicators for a stock",
+        "description": "Returns RSI, MACD, SMA technical indicators and overall signal for a given stock symbol. Use NSE symbols like INFY.NS, TCS.NS, SBIN.NS, ICICIBANK.NS, HDFCBANK.NS, RELIANCE.NS, WIPRO.NS",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "symbol": {
+                    "type": "string",
+                    "description": "Yahoo Finance ticker symbol e.g. INFY.NS or SBIN.NS"
+                  }
+                },
+                "required": ["symbol"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Technical indicators data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

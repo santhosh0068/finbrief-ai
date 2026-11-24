@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}New Ticket – IT Helpdesk{% endblock %}
+
+{% block content %}
+<div class="section-header">
+  <h1>➕ New Ticket</h1>
+  <a href="{{ url_for('tickets') }}" class="btn btn-grey">← Back</a>
+</div>
+
+<div class="card">
+  <form method="POST" id="new-ticket-form">
+    <div class="field">
+      <label>Title *</label>
+      <input name="title" type="text" placeholder="Short description of the issue" required/>
+    </div>
+    <div class="field">
+      <label>Description *</label>
+      <textarea name="description" rows="4" placeholder="Full details of the problem…" required></textarea>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Priority</label>
+        <select name="priority">
+          <option>High</option>
+          <option selected>Medium</option>
+          <option>Low</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Category</label>
+        <select name="category">
+          <option>Network</option>
+          <option>Hardware</option>
+          <option>Software</option>
+          <option>Access</option>
+          <option>General</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Assignee</label>
+        <input name="assignee" type="text" placeholder="Username (optional)"/>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-green">Create Ticket</button>
+  </form>
+</div>
+{% endblock %}

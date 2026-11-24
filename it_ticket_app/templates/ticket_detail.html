@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}{{ ticket.id }} – IT Helpdesk{% endblock %}
+
+{% block content %}
+<div class="section-header">
+  <h1>🎫 {{ ticket.id }}</h1>
+  <div class="btn-group">
+    <a href="{{ url_for('edit_ticket', tid=ticket.id) }}" class="btn btn-yellow">✏️ Edit</a>
+    <a href="{{ url_for('tickets') }}" class="btn btn-grey">← Back</a>
+  </div>
+</div>
+
+<div class="card">
+  <h2 id="ticket-title">{{ ticket.title }}</h2>
+
+  <div class="detail-grid">
+    <div class="detail-item">
+      <span class="lbl">Ticket ID</span>
+      <span id="ticket-id"><code>{{ ticket.id }}</code></span>
+    </div>
+    <div class="detail-item">
+      <span class="lbl">Status</span>
+      <span id="ticket-status">
+        <span class="badge status-{{ ticket.status|replace(' ','-') }}">{{ ticket.status }}</span>
+      </span>
+    </div>
+    <div class="detail-item">
+      <span class="lbl">Priority</span>
+      <span id="ticket-priority">
+        <span class="badge priority-{{ ticket.priority }}">{{ ticket.priority }}</span>
+      </span>
+    </div>
+    <div class="detail-item">
+      <span class="lbl">Category</span>
+      <span id="ticket-category">{{ ticket.category }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="lbl">Assignee</span>
+      <span id="ticket-assignee">{{ ticket.assignee or 'Unassigned' }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="lbl">Created</span>
+      <span>{{ ticket.created_at }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="lbl">Last Updated</span>
+      <span id="ticket-updated">{{ ticket.updated_at }}</span>
+    </div>
+  </div>
+
+  <div class="desc-block">
+    <span class="lbl">Description</span>
+    <p id="ticket-description">{{ ticket.description }}</p>
+  </div>
+</div>
+{% endblock %}
